@@ -1,14 +1,27 @@
 package com.example.cs213_pa4;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
+
+import java.io.IOException;
 
 public class CafeAppController {
     @FXML
-    private Label welcomeText;
+    private Button donut;
+    @FXML
+    private Button coffee;
+    @FXML
+    private Button basket;
+    @FXML
+    private Button shoplist;
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    void changeSceneCoffee() throws IOException {
+        CafeApplication.changeScene("coffee-view.fxml");
     }
+    @FXML
+    void changeSceneDonut() throws IOException {
+        CafeApplication.changeScene("donut-view.fxml");
+    }
+
 }

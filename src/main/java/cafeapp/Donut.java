@@ -10,62 +10,41 @@ public class Donut extends MenuItem {
     /**
      * Type of the donut (yeast, cake, or hole).
      */
-    private int donutType;
+    private String donutType;
 
     /**
      * Flavor of the donut
      */
     private String donutFlavor;
-
     /**
-     * Constructor for the donut with a given type, defaulting flavor to plain
-     * @param type Type of the donut
+     * Quantity of the donut
      */
-    public Donut(int type) {
-        donutType = type;
-        donutFlavor = "Plain";
-    }
+    private int donutQuantity;
 
     /**
      * Constructor for the donut with a given type and flavor.
      * @param type Type of the donut.
      * @param donutFlavor Flavor of the donut.
      */
-    public Donut(int type, String donutFlavor) {
+    public Donut(String type, String donutFlavor, int quantity) {
         donutType = type;
         this.donutFlavor = donutFlavor;
+        donutQuantity = quantity;
     }
 
     /**
      * Set the donut type.
      * @param type Type of the donut to change to.
      */
-    public void setDonutType(int type) {
+    public void setDonutType(String type) {
         donutType = type;
-    }
-
-    /**
-     * Get the donut type as a string.
-     * @return String representing the donut type.
-     */
-    public String getDonutTypeString() {
-        switch(donutType) {
-            case Constants.DONUT_YEAST:
-                return "Yeast Donut";
-            case Constants.DONUT_CAKE:
-                return "Cake Donut";
-            case Constants.DONUT_HOLE:
-                return "Donut Hole";
-            default:
-                return "THIS DONUT ISN'T REAL";
-        }
     }
 
     /**
      * Return the type of the donut as an integer
      * @return
      */
-    public int getDonutType() {
+    public String getDonutType() {
         return donutType;
     }
 
@@ -83,6 +62,13 @@ public class Donut extends MenuItem {
      */
     public String getDonutFlavor() {
         return donutFlavor;
+    }
+
+    public void addDonuts(int amt) {
+        donutQuantity += amt;
+    }
+    public int getDonutQuantity() {
+        return donutQuantity;
     }
 
     /**
@@ -107,6 +93,23 @@ public class Donut extends MenuItem {
                 break;
         }
         return price;
+    }
+
+    /**
+     * Override the equals method for Donut.  Two donuts are equivalent if they are of the same type and flavor.
+     * @param obj Object to compare to.
+     * @return true or false.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Donut x) {
+            return (this.getDonutType().equals(x.getDonutType()) && this.getDonutFlavor().equals(x.getDonutFlavor()));
+        }
+        return false;
+    }
+    @Override
+    public String toString() {
+        return donutType + " [" + donutFlavor + "] x" +donutQuantity;
     }
 
 }

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cs213_pa4.CoffeeViewController">
+   <children>
+      <Pane prefHeight="503.0" prefWidth="500.0">
+         <children>
+            <Label layoutX="48.0" layoutY="73.0" prefHeight="393.0" prefWidth="413.0" style="-fx-background-color: #FA0;" />
+            <Pane layoutX="73.0" layoutY="103.0" prefHeight="100.0" prefWidth="153.0" style="-fx-background-color: #ACA;">
+               <children>
+                  <RadioButton fx:id="small" layoutX="7.0" layoutY="30.0" mnemonicParsing="false" onAction="#changeSize" prefHeight="19.0" prefWidth="72.0" text="Small">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="sizes" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="tall" layoutX="7.0" layoutY="58.0" mnemonicParsing="false" onAction="#changeSize" text="Tall" toggleGroup="$sizes" />
+                  <RadioButton fx:id="grande" layoutX="82.0" layoutY="31.0" mnemonicParsing="false" onAction="#changeSize" text="Grande" toggleGroup="$sizes" />
+                  <RadioButton fx:id="venti" layoutX="82.0" layoutY="58.0" mnemonicParsing="false" onAction="#changeSize" text="Venti" toggleGroup="$sizes" />
+                  <Label layoutX="11.0" layoutY="1.0" prefHeight="31.0" prefWidth="53.0" text="Sizes:" />
+               </children>
+            </Pane>
+            <Button fx:id="home" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#changeSceneHome" prefHeight="37.0" prefWidth="41.0">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/smallhouse.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <GridPane layoutX="73.0" layoutY="250.0" prefHeight="188.0" prefWidth="152.0" style="-fx-background-color: #ACA;">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label text="Add-Ins:" translateX="5.0" translateY="3.0" />
+                  <CheckBox fx:id="mocha" mnemonicParsing="false" onAction="#choiceMocha" text="Mocha" translateX="10.0" GridPane.rowIndex="5" />
+                  <CheckBox fx:id="caramel" mnemonicParsing="false" onAction="#choiceCaramel" text="Caramel" translateX="10.0" GridPane.rowIndex="4" />
+                  <CheckBox fx:id="irish_cream" mnemonicParsing="false" onAction="#choiceIrishCream" prefHeight="18.0" prefWidth="105.0" text="Irish Cream" translateX="10.0" GridPane.rowIndex="3" />
+                  <CheckBox fx:id="french_vanilla" mnemonicParsing="false" onAction="#choiceFrenchVanilla" text="French Vanilla" translateX="10.0" GridPane.rowIndex="2" />
+                  <CheckBox fx:id="sweet_cream" mnemonicParsing="false" onAction="#choiceSweetCream" text="Sweet Cream" translateX="10.0" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+            <Label alignment="CENTER" layoutX="149.0" layoutY="18.0" prefHeight="38.0" prefWidth="202.0" style="-fx-background-color: #AA0;" text="Coffee">
+               <font>
+                  <Font name="Courier New" size="31.0" />
+               </font>
+            </Label>
+            <Pane layoutX="275.0" layoutY="103.0" prefHeight="100.0" prefWidth="162.0" style="-fx-background-color: #ACA;">
+               <children>
+                  <Label layoutX="18.0" layoutY="14.0" prefHeight="19.0" prefWidth="98.0" text="Quantity:" />
+                  <ComboBox fx:id="quantity" layoutX="13.0" layoutY="44.0" onAction="#changeQuantity" prefHeight="25.0" prefWidth="136.0" />
+               </children>
+            </Pane>
+            <Pane layoutX="275.0" layoutY="250.0" prefHeight="71.0" prefWidth="162.0" style="-fx-background-color: #ACA;">
+               <children>
+                  <Label layoutX="14.0" layoutY="6.0" prefHeight="19.0" prefWidth="64.0" text="Total:" />
+                  <Label fx:id="total" layoutX="13.0" layoutY="36.0" prefHeight="25.0" prefWidth="136.0" text="\$0.00" />
+               </children>
+            </Pane>
+            <Button layoutX="275.0" layoutY="355.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="162.0" text="Add to Order" />
+         </children>
+      </Pane>
+   </children>
+</VBox>

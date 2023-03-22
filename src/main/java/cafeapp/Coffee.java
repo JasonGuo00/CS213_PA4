@@ -10,7 +10,11 @@ public class Coffee extends MenuItem {
     /**
      * Size of the coffee
      */
-    private int size;
+    private String size;
+    /**
+     * Quantity of coffee
+     */
+    private int coffeeQuantity;
     /**
      * List of add-ins for the coffee
      */
@@ -20,16 +24,17 @@ public class Coffee extends MenuItem {
      * Constructor for a coffee object, taking a size and initializing an empty add-in list
      * @param size Size of the coffee
      */
-    public Coffee(int size) {
+    public Coffee(String size) {
         addInList = new ArrayList<>();
         this.size = size;
+        coffeeQuantity = 0;
     }
 
     /**
      * Setter method to change the size of the Coffee
      * @param size Size of the coffee to change to
      */
-    public void changeSize(int size) {
+    public void changeSize(String size) {
         this.size = size;
     }
 
@@ -39,7 +44,7 @@ public class Coffee extends MenuItem {
      */
     @Override
     public double itemPrice() {
-        int price = 0;
+        double price = 0;
         switch(size) {
             case Constants.COFFEE_VENTI:
                 price += Constants.COFFEE_SIZE_INCREMENT;
@@ -60,53 +65,73 @@ public class Coffee extends MenuItem {
 
     /**
      * Obtain the size of the coffee
-     * @return Size of the coffee as an integer
+     * @return Size of the coffee
      */
-    public int getSize() {return size;}
+    public String getSize() {return size;}
 
     /**
-     * Getter method to obtain the size of the coffee as a String
-     * @return String representing the size of the coffee4
+     * Add topping to the add-in list.
+     * @param topping The topping to add to the coffee.
      */
-    public String getSizeString() {
-        switch(size) {
-            case Constants.COFFEE_VENTI:
-                return "Venti";
-            case Constants.COFFEE_GRANDE:
-                return "Grande";
-            case Constants.COFFEE_TALL:
-                return "Tall";
-            case Constants.COFFEE_SHORT:
-                return "Short";
-            default:
-                return "THIS COFFEE ISN'T REAL";
+    public void addTopping(String topping) {
+        if(topping.equalsIgnoreCase("sweet cream") ||
+                topping.equalsIgnoreCase("french vanilla") ||
+                topping.equalsIgnoreCase("irish cream") ||
+                topping.equalsIgnoreCase("caramel") ||
+                topping.equalsIgnoreCase("mocha")) {
+
+            addInList.add(topping);
         }
     }
 
     /**
-     * Add topping(s) to the add-in list
-     * @param toppingsList The list of toppings to add to the coffee.  Can be a single add-in.
+     * Remove topping to the add-in list
+     * @param topping The topping to remove.
      */
-    public void addTopping(String[] toppingsList) {
-        for(String topping: toppingsList) {
-            if(topping.equalsIgnoreCase("sweet cream") ||
-                    topping.equalsIgnoreCase("french vanilla") ||
-                    topping.equalsIgnoreCase("irish cream") ||
-                    topping.equalsIgnoreCase("caramel") ||
-                    topping.equalsIgnoreCase("mocha")) {
+    public void removeTopping(String topping) {
+        addInList.remove(topping);
+    }
 
-                addInList.add(topping);
+    /**
+     * Set the quantity of Coffee.
+     * @param amt Number amount of coffee to set quantity to.
+     */
+    public void setQuantity(int amt) {
+        coffeeQuantity = amt;
+    }
+
+    /**
+     * Obtain the list of toppings as a string.
+     * @return String of all toppings.
+     */
+    public String getToppings() {
+        String str = "";
+        for(String topping : addInList) {
+            str = str + topping;
+            if(addInList.indexOf(topping) < addInList.size()-1) {
+                str = str + ",";
             }
         }
+        return str;
     }
 
     /**
-     * Remove topping(s) to the add-in list
-     * @param toppingsList The list of toppings to remove from the coffee.  Can be a single add-in.
+     * Get the quantity of coffee.
+     * @return Integer representing the quantity of coffee.
      */
-    public void removeTopping(String[] toppingsList) {
-        for(String topping: toppingsList) {
-            addInList.remove(topping);
+    public int getCoffeeQuantity() {return coffeeQuantity;};
+
+    /**
+     * Overriding toString method.
+     * @return Coffee along with its size and toppings
+     */
+    @Override
+    public String toString() {
+        if(addInList.isEmpty()) {
+            return "Coffee [" + getSize() + "]";
+        }
+        else {
+            return "Coffee [" + getSize() + "] [" + getToppings() + "]";
         }
     }
 }
