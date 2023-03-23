@@ -67,7 +67,8 @@ public class Donut extends MenuItem {
     public void addDonuts(int amt) {
         donutQuantity += amt;
     }
-    public int getDonutQuantity() {
+    @Override
+    public int getQuantity() {
         return donutQuantity;
     }
 

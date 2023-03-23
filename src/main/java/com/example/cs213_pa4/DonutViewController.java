@@ -104,7 +104,7 @@ public class DonutViewController {
             return;
         }
         for(Donut d : chosen_donuts) {
-            price += d.itemPrice()*d.getDonutQuantity();
+            price += d.itemPrice()*d.getQuantity();
         }
         DecimalFormat f = new DecimalFormat("##.00");
         total.setText("Total: $" + f.format(price));
@@ -115,7 +115,7 @@ public class DonutViewController {
         if(donut_types.getValue() != null && donut_flavors.getSelectionModel().getSelectedItem() != null && quantity.getValue() != null) {
             Donut donut = new Donut(donut_types.getValue(), donut_flavors.getSelectionModel().getSelectedItem(), Integer.parseInt(quantity.getValue()));
             if(chosen_donuts.contains(donut)) {
-                chosen_donuts.get(chosen_donuts.indexOf(donut)).addDonuts(donut.getDonutQuantity());
+                chosen_donuts.get(chosen_donuts.indexOf(donut)).addDonuts(donut.getQuantity());
             }
             else {
                 chosen_donuts.add(donut);

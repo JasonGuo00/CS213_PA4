@@ -119,7 +119,8 @@ public class Coffee extends MenuItem {
      * Get the quantity of coffee.
      * @return Integer representing the quantity of coffee.
      */
-    public int getCoffeeQuantity() {return coffeeQuantity;};
+    @Override
+    public int getQuantity() {return coffeeQuantity;};
 
     /**
      * Overriding toString method.

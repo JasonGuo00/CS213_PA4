@@ -1,7 +1,6 @@
 package com.example.cs213_pa4;
 
 import cafeapp.Coffee;
-import cafeapp.Donut;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -62,11 +61,11 @@ public class CoffeeViewController {
 
     @FXML
     private void updatePrice() {
-        if(coffee.getCoffeeQuantity() == 0) {
+        if(coffee.getQuantity() == 0) {
             total.setText("$0.00");
             return;
         }
-        double price = coffee.itemPrice()*coffee.getCoffeeQuantity();
+        double price = coffee.itemPrice()*coffee.getQuantity();
         DecimalFormat f = new DecimalFormat("##.00");
         total.setText("$" + f.format(price));
     }

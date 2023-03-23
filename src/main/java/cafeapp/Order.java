@@ -1,6 +1,6 @@
 package cafeapp;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * Class representing the order of a customer.
@@ -18,7 +18,7 @@ public class Order {
     /**
      * List of menu items in the order.  Contained in a hashmap that tracks quantity.
      */
-    private HashMap<MenuItem, Integer> orderList;
+    private ArrayList<MenuItem> orderList;
 
     /**
      * Default constructor for the Order.  Assigns a unique order number and initializes orderList.
@@ -26,21 +26,15 @@ public class Order {
     public Order() {
         orderNum = position;
         position++;
-        orderList = new HashMap<>();
+        orderList = new ArrayList<>();
     }
 
     /**
-     * Remove a menu item from the order, or decrease the quantity.
-     * @param item Item to be removed / decreased
-     * @param quantity
+     * Remove a menu item from the order.
+     * @param item Item to be removed
      */
-    public void removeItem(MenuItem item, int quantity) {
-        if(quantity >= orderList.get(item)) {
-            orderList.remove(item);
-        }
-        else {
-            orderList.replace(item, orderList.get(item) - quantity);
-        }
+    public void removeItem(MenuItem item) {
+        orderList.remove(item);
     }
 
     /**
@@ -49,21 +43,17 @@ public class Order {
      * @param quantity Quantity of the menu item to add.
      */
     public void addItem(MenuItem item, int quantity) {
-        if(orderList.get(item) == null) {
-            orderList.put(item, quantity);
+        if(!orderList.contains(item)) {
+            orderList.add(item);
         }
         else {
-            orderList.replace(item, orderList.get(item) + quantity);
+            if(item instanceof  Donut) {
+                ((Donut)orderList.get(orderList.indexOf(item))).addDonuts(quantity);
+            }
+            else {
+                ((Coffee)orderList.get(orderList.indexOf(item))).setQuantity(orderList.get(orderList.indexOf(item)).getQuantity() + quantity);
+            }
         }
-    }
-
-    /**
-     * Change the quantity of an item in the hashmap.
-     * @param item Target menu item.
-     * @param quantity Quantity to replace with.
-     */
-    public void changeQuantity(MenuItem item, int quantity) {
-        orderList.replace(item, quantity);
     }
 
     /**
@@ -72,8 +62,8 @@ public class Order {
      */
     public double subtotal() {
         int price = 0;
-        for(MenuItem item : orderList.keySet()) {
-            price += (item.itemPrice() * orderList.get(item));
+        for(MenuItem item : orderList) {
+            price += (item.itemPrice() * item.getQuantity());
         }
         return price;
     }
