@@ -16,9 +16,15 @@ public class Order {
      */
     private int orderNum;
     /**
-     * List of menu items in the order.  Contained in a hashmap that tracks quantity.
+     * List of menu items in the order.  Accessible through public methods to allow MenuItems
+     * to be added from the Coffee and Donut views.
      */
-    private ArrayList<MenuItem> orderList;
+    private static ArrayList<MenuItem> globalOrderList = new ArrayList<>();
+
+    /**
+     * Finalized list of MenuItems tied to the current order.
+     */
+    private ArrayList<MenuItem> finalOrderList;
 
     /**
      * Default constructor for the Order.  Assigns a unique order number and initializes orderList.
@@ -26,7 +32,7 @@ public class Order {
     public Order() {
         orderNum = position;
         position++;
-        orderList = new ArrayList<>();
+        finalOrderList = new ArrayList<>();
     }
 
     /**
@@ -34,24 +40,25 @@ public class Order {
      * @param item Item to be removed
      */
     public void removeItem(MenuItem item) {
-        orderList.remove(item);
+        globalOrderList.remove(item);
     }
 
     /**
      * Add a menu item to the order, and increment if that item is already in there.
+     * Defined as a static method to allow access from the Coffee and Donut Controllers.
      * @param item Menu item to be added.
-     * @param quantity Quantity of the menu item to add.
      */
-    public void addItem(MenuItem item, int quantity) {
-        if(!orderList.contains(item)) {
-            orderList.add(item);
+    public static void addItem(MenuItem item) {
+        if(!globalOrderList.contains(item)) {
+            globalOrderList.add(item);
         }
         else {
             if(item instanceof  Donut) {
-                ((Donut)orderList.get(orderList.indexOf(item))).addDonuts(quantity);
+                ((Donut) globalOrderList.get(globalOrderList.indexOf(item))).addDonuts(item.getQuantity());
             }
             else {
-                ((Coffee)orderList.get(orderList.indexOf(item))).setQuantity(orderList.get(orderList.indexOf(item)).getQuantity() + quantity);
+                ((Coffee) globalOrderList.get(globalOrderList.indexOf(item))).setQuantity
+                        (globalOrderList.get(globalOrderList.indexOf(item)).getQuantity() + item.getQuantity());
             }
         }
     }
@@ -62,7 +69,7 @@ public class Order {
      */
     public double subtotal() {
         int price = 0;
-        for(MenuItem item : orderList) {
+        for(MenuItem item : globalOrderList) {
             price += (item.itemPrice() * item.getQuantity());
         }
         return price;
@@ -89,4 +96,16 @@ public class Order {
      * @return Order number.
      */
     public int getOrderNum() {return orderNum;}
+
+    /**
+     * Writes all the data form the globalOrderList to the instance's finalOrderList.
+     * The globalOrderList is cleared afterwards.
+     */
+    public void finalizeOrder() {
+        finalOrderList.addAll(globalOrderList);
+        globalOrderList.clear();
+    }
+    public static ArrayList<MenuItem> getGlobal() {
+        return new ArrayList<>(globalOrderList);
+    }
 }

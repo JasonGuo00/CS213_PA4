@@ -24,4 +24,9 @@ public class CafeAppController {
         CafeApplication.changeScene("donut-view.fxml");
     }
 
+    @FXML
+    void changeSceneOrder() throws IOException {
+        CafeApplication.changeScene("order-view.fxml");
+    }
+
 }

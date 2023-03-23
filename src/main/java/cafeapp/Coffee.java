@@ -132,7 +132,7 @@ public class Coffee extends MenuItem {
             return "Coffee [" + getSize() + "]";
         }
         else {
-            return "Coffee [" + getSize() + "] [" + getToppings() + "]";
+            return "Coffee [" + getSize() + "] [" + getToppings() + "] x" + coffeeQuantity;
         }
     }
 }

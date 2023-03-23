@@ -2,6 +2,7 @@ package com.example.cs213_pa4;
 
 import cafeapp.Constants;
 import cafeapp.Donut;
+import cafeapp.Order;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -36,6 +37,8 @@ public class DonutViewController {
     private Button remove_donut;
     @FXML
     private Label total;
+    @FXML
+    private Button finalize;
 
     private ArrayList<Donut> chosen_donuts = new ArrayList<>();
 
@@ -132,5 +135,12 @@ public class DonutViewController {
             updateSelectedDonuts();
             updatePrice();
         }
+    }
+    @FXML
+    private void addToOrder() throws IOException {
+        for(Donut donut : chosen_donuts) {
+            Order.addItem(donut);
+        }
+        CafeApplication.changeScene("order-view.fxml");
     }
 }

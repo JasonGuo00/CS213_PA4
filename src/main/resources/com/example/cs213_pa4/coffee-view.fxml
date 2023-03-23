@@ -80,7 +80,7 @@
                   <Label fx:id="total" layoutX="13.0" layoutY="36.0" prefHeight="25.0" prefWidth="136.0" text="\$0.00" />
                </children>
             </Pane>
-            <Button layoutX="275.0" layoutY="355.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="162.0" text="Add to Order" />
+            <Button fx:id="finalize" layoutX="275.0" layoutY="355.0" mnemonicParsing="false" onAction="#addToOrder" prefHeight="25.0" prefWidth="162.0" text="Add to Order" />
          </children>
       </Pane>
    </children>

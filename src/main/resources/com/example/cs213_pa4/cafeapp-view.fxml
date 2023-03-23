@@ -40,7 +40,7 @@
                   <ImageView fitHeight="80.0" fitWidth="210.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </Button>
-            <Button fx:id="basket" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="138.0" prefWidth="213.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Button fx:id="basket" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#changeSceneOrder" prefHeight="138.0" prefWidth="213.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <graphic>
                   <ImageView fitHeight="80.0" fitWidth="210.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>

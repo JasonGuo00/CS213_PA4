@@ -1,6 +1,7 @@
 package com.example.cs213_pa4;
 
 import cafeapp.Coffee;
+import cafeapp.Order;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -34,6 +35,8 @@ public class CoffeeViewController {
     private Label total;
     @FXML
     private ToggleGroup sizes = new ToggleGroup();
+    @FXML
+    private Button finalize;
 
     private Coffee coffee = new Coffee("Short");
 
@@ -127,5 +130,10 @@ public class CoffeeViewController {
     @FXML
     private void initialize() {
         quantity.getItems().addAll("1", "2", "3", "4", "5");
+    }
+    @FXML
+    private void addToOrder() throws IOException {
+        Order.addItem(coffee);
+        CafeApplication.changeScene("order-view.fxml");
     }
 }

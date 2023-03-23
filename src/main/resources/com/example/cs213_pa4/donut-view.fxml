@@ -66,7 +66,7 @@
       </Pane>
       <Pane layoutX="260.0" layoutY="373.0" prefHeight="38.0" prefWidth="217.0" style="-fx-background-color: #ff0;">
          <children>
-            <Button layoutX="47.0" layoutY="7.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" text="Add to Order" />
+            <Button fx:id="finalize" layoutX="47.0" layoutY="7.0" mnemonicParsing="false" onAction="#addToOrder" prefHeight="25.0" prefWidth="124.0" text="Add to Order" />
          </children>
       </Pane>
    </children>
