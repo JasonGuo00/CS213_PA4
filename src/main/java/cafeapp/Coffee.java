@@ -82,6 +82,7 @@ public class Coffee extends MenuItem {
 
             addInList.add(topping);
         }
+        addInList.sort(null);
     }
 
     /**
@@ -90,6 +91,7 @@ public class Coffee extends MenuItem {
      */
     public void removeTopping(String topping) {
         addInList.remove(topping);
+        addInList.sort(null);
     }
 
     /**
@@ -123,13 +125,27 @@ public class Coffee extends MenuItem {
     public int getQuantity() {return coffeeQuantity;};
 
     /**
+     * Overrides the equals method.  Checks that the coffees have the same size and toppings by comparing
+     * their strings.
+     * @param obj Object to be compared to.
+     * @return true or false.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Coffee x) {
+            return (this.getSize().equals(x.getSize()) && this.getToppings().equals(x.getToppings()));
+        }
+        return false;
+    }
+
+    /**
      * Overriding toString method.
      * @return Coffee along with its size and toppings
      */
     @Override
     public String toString() {
         if(addInList.isEmpty()) {
-            return "Coffee [" + getSize() + "]";
+            return "Coffee [" + getSize() + "] x" + coffeeQuantity;
         }
         else {
             return "Coffee [" + getSize() + "] [" + getToppings() + "] x" + coffeeQuantity;
