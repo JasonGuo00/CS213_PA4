@@ -133,7 +133,9 @@ public class CoffeeViewController {
     }
     @FXML
     private void addToOrder() throws IOException {
-        Order.addItem(coffee);
-        CafeApplication.changeScene("order-view.fxml");
+        if(coffee.getQuantity() > 0 && coffee.getSize() != null) {
+            Order.addItem(coffee);
+            CafeApplication.changeScene("order-view.fxml");
+        }
     }
 }

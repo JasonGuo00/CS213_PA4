@@ -22,7 +22,7 @@
             <Label layoutX="48.0" layoutY="73.0" prefHeight="393.0" prefWidth="413.0" style="-fx-background-color: #FA0;" />
             <Pane layoutX="73.0" layoutY="103.0" prefHeight="100.0" prefWidth="153.0" style="-fx-background-color: #ACA;">
                <children>
-                  <RadioButton fx:id="small" layoutX="7.0" layoutY="30.0" mnemonicParsing="false" onAction="#changeSize" prefHeight="19.0" prefWidth="72.0" text="Small">
+                  <RadioButton fx:id="small" layoutX="7.0" layoutY="30.0" mnemonicParsing="false" onAction="#changeSize" prefHeight="19.0" prefWidth="72.0" selected="true" text="Small">
                      <toggleGroup>
                         <ToggleGroup fx:id="sizes" />
                      </toggleGroup>
