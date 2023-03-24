@@ -18,7 +18,7 @@ public class OrderViewController {
     @FXML
     private Label order_label;
 
-    private Order order = new Order();
+    private Order order;
 
     @FXML
     void changeSceneHome() throws IOException {
@@ -26,8 +26,14 @@ public class OrderViewController {
     }
     @FXML
     private void initialize(){
-        order_label.setText("Order #" + order.getOrderNum());
+        order_label.setText("Order #" + Order.getPosition());
         order_list.getItems().addAll(Order.getGlobal());
+    }
+
+    @FXML
+    private void finalizeOrder(){
+        order = new Order();
+        order.finalizeOrder();
     }
 
 }

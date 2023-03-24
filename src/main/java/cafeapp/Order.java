@@ -96,6 +96,13 @@ public class Order {
      * @return Order number.
      */
     public int getOrderNum() {return orderNum;}
+    /**
+     * Obtain the global order number
+     * @return position
+     */
+    public static int getPosition() {
+        return position;
+    }
 
     /**
      * Writes all the data form the globalOrderList to the instance's finalOrderList.
