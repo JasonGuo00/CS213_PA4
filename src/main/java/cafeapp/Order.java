@@ -39,7 +39,7 @@ public class Order {
      * Remove a menu item from the order.
      * @param item Item to be removed
      */
-    public void removeItem(MenuItem item) {
+    public static void removeItem(MenuItem item) {
         globalOrderList.remove(item);
     }
 

@@ -16,6 +16,10 @@ public class OrderViewController {
     @FXML
     private Button home;
     @FXML
+    private Button place_order;
+    @FXML
+    private Button remove_item;
+    @FXML
     private Label order_label;
 
     private Order order;
@@ -31,9 +35,21 @@ public class OrderViewController {
     }
 
     @FXML
+    private void removeItem() {
+        if(order_list.getSelectionModel().getSelectedItem() != null) {
+            Order.removeItem(order_list.getSelectionModel().getSelectedItem());
+            order_list.getItems().remove(order_list.getSelectionModel().getSelectedItem());
+        }
+    }
+
+    @FXML
     private void finalizeOrder(){
-        order = new Order();
-        order.finalizeOrder();
+        if(!order_list.getItems().isEmpty()) {
+            order = new Order();
+            order.finalizeOrder();
+            ShoplistViewController.addOrder(order);
+            order_list.getItems().clear();
+        }
     }
 
 }
