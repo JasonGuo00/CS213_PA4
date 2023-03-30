@@ -4,10 +4,7 @@ import cafeapp.Constants;
 import cafeapp.Donut;
 import cafeapp.Order;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -39,6 +36,8 @@ public class DonutViewController {
     private Label total;
     @FXML
     private Button finalize;
+    @FXML
+    private TextField text_field;
 
     private ArrayList<Donut> chosen_donuts = new ArrayList<>();
 
@@ -116,6 +115,7 @@ public class DonutViewController {
     @FXML
     private void addDonut() {
         if(donut_types.getValue() != null && donut_flavors.getSelectionModel().getSelectedItem() != null && quantity.getValue() != null) {
+            text_field.clear();
             Donut donut = new Donut(donut_types.getValue(), donut_flavors.getSelectionModel().getSelectedItem(), Integer.parseInt(quantity.getValue()));
             if(chosen_donuts.contains(donut)) {
                 chosen_donuts.get(chosen_donuts.indexOf(donut)).addDonuts(donut.getQuantity());
@@ -126,21 +126,42 @@ public class DonutViewController {
             updateSelectedDonuts();
             updatePrice();
         }
+        else{
+            if(donut_types.getValue() == null) {
+                text_field.setText("Please select a donut type!");
+            }
+            else if(donut_flavors.getSelectionModel().getSelectedItem() == null) {
+                text_field.setText("Please select a flavor!");
+            }
+            else if(quantity.getValue() == null) {
+                text_field.setText("Please select a quantity!");
+            }
+        }
     }
 
     @FXML
     private void removeDonut() {
         if(!chosen_donuts.isEmpty() && selected_donuts.getSelectionModel().getSelectedItem() != null) {
+            text_field.setText("Donut removed!");
             chosen_donuts.remove(selected_donuts.getSelectionModel().getSelectedItem());
             updateSelectedDonuts();
             updatePrice();
         }
+        else {
+            text_field.setText("No donut selected for removal!");
+        }
     }
     @FXML
     private void addToOrder() throws IOException {
-        for(Donut donut : chosen_donuts) {
-            Order.addItem(donut);
+        if(!chosen_donuts.isEmpty()) {
+            for(Donut donut : chosen_donuts) {
+                Order.addItem(donut);
+            }
+            CafeApplication.changeScene("order-view.fxml");
         }
-        CafeApplication.changeScene("order-view.fxml");
+        else {
+            text_field.setText("Please add some donuts!");
+        }
+
     }
 }

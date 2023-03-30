@@ -47,7 +47,7 @@ public class OrderViewController {
     }
 
     @FXML
-    private void finalizeOrder(){
+    private void finalizeOrder() throws IOException {
         if(!order_list.getItems().isEmpty()) {
             order = new Order();
             order.finalizeOrder();

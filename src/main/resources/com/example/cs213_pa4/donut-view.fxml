@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -69,5 +70,6 @@
             <Button fx:id="finalize" layoutX="47.0" layoutY="7.0" mnemonicParsing="false" onAction="#addToOrder" prefHeight="25.0" prefWidth="124.0" text="Add to Order" />
          </children>
       </Pane>
+      <TextField fx:id="text_field" editable="false" layoutX="260.0" layoutY="421.0" prefHeight="32.0" prefWidth="216.0" />
    </children>
 </Pane>
