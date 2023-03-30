@@ -22,6 +22,9 @@ public class OrderViewController {
     @FXML
     private Label order_label;
 
+    @FXML
+    private Label total_label;
+
     private Order order;
 
     @FXML
@@ -32,6 +35,7 @@ public class OrderViewController {
     private void initialize(){
         order_label.setText("Order #" + Order.getPosition());
         order_list.getItems().addAll(Order.getGlobal());
+        changeTotals();
     }
 
     @FXML
@@ -49,7 +53,18 @@ public class OrderViewController {
             order.finalizeOrder();
             ShoplistViewController.addOrder(order);
             order_list.getItems().clear();
+            CafeApplication.changeScene("order-view.fxml");
         }
     }
 
+    private void changeTotals() {
+        String new_text = String.format("""
+                %-120s$%,.2f
+                %-120s$%,.2f
+                %-118s$%,.2f""",
+                "Subtotal:", order.subtotal(),
+                "Sales Tax:", order.tax(),
+                "Order Total:", order.totalPrice());
+        total_label.setText(new_text);
+    }
 }

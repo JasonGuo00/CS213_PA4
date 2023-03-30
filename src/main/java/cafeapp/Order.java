@@ -67,7 +67,7 @@ public class Order {
      * Obtain the subtotal of all the items in the order.
      * @return Subtotal of the order.
      */
-    public double subtotal() {
+    public static double subtotal() {
         int price = 0;
         for(MenuItem item : globalOrderList) {
             price += (item.itemPrice() * item.getQuantity());
@@ -79,7 +79,7 @@ public class Order {
      * Obtain the tax due based on the subtotal.
      * @return Tax due on the order.
      */
-    public double tax() {
+    public static double tax() {
         return subtotal()*Constants.SALES_TAX_MULTIPLIER;
     }
 
@@ -87,7 +87,7 @@ public class Order {
      * Obtain the total price of the order by adding the subtotal and tax.
      * @return Total price of the order.
      */
-    public double totalPrice() {
+    public static double totalPrice() {
         return subtotal() + tax();
     }
 
