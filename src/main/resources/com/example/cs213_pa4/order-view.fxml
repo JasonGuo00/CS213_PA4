@@ -17,7 +17,12 @@
                <children>
                   <Pane layoutX="14.0" layoutY="269.0" prefHeight="57.0" prefWidth="405.0" style="-fx-background-color: #FFF; -fx-border-width: 1px; -fx-border-color: #CCC;">
                      <children>
-                        <Label fx:id="total_label" layoutX="6.0" layoutY="4.0" prefHeight="49.0" prefWidth="393.0">
+                        <Label fx:id="total_label" alignment="CENTER_RIGHT" layoutX="100.0" layoutY="4.0" prefHeight="49.0" prefWidth="298.0">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="7.0" layoutY="4.0" prefHeight="49.0" prefWidth="59.0" text="Subtotal: Sales Tax: Order Total:" wrapText="true">
                            <font>
                               <Font size="10.0" />
                            </font>

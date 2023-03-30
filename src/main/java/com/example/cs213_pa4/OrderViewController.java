@@ -43,6 +43,7 @@ public class OrderViewController {
         if(order_list.getSelectionModel().getSelectedItem() != null) {
             Order.removeItem(order_list.getSelectionModel().getSelectedItem());
             order_list.getItems().remove(order_list.getSelectionModel().getSelectedItem());
+            changeTotals();
         }
     }
 
@@ -53,18 +54,22 @@ public class OrderViewController {
             order.finalizeOrder();
             ShoplistViewController.addOrder(order);
             order_list.getItems().clear();
-            CafeApplication.changeScene("order-view.fxml");
+            try {
+                changeSceneHome();
+            }  catch (IOException ex) {
+
+            }
         }
     }
 
     private void changeTotals() {
         String new_text = String.format("""
-                %-120s$%,.2f
-                %-120s$%,.2f
-                %-118s$%,.2f""",
-                "Subtotal:", order.subtotal(),
-                "Sales Tax:", order.tax(),
-                "Order Total:", order.totalPrice());
+                $%,.2f
+                $%,.2f
+                $%,.2f""",
+                Order.staticSubtotal(),
+                Order.staticTax(),
+                Order.staticTotalPrice());
         total_label.setText(new_text);
     }
 }

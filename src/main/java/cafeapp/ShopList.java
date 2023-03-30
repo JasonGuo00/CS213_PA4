@@ -34,4 +34,8 @@ public class ShopList {
     public void removeOrder(Order order) {
         orderList.remove(order);
     }
+
+    public ArrayList<Order> getOrderList() {
+        return orderList;
+    }
 }
