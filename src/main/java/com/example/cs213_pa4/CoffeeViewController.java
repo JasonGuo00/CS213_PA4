@@ -34,6 +34,8 @@ public class CoffeeViewController {
     @FXML
     private Label total;
     @FXML
+    private TextField text_field;
+    @FXML
     private ToggleGroup sizes = new ToggleGroup();
     @FXML
     private Button finalize;
@@ -133,9 +135,12 @@ public class CoffeeViewController {
     }
     @FXML
     private void addToOrder() throws IOException {
-        if(coffee.getQuantity() > 0 && coffee.getSize() != null) {
+        if(coffee.getQuantity() > 0) {
             Order.addItem(coffee);
             CafeApplication.changeScene("order-view.fxml");
+        }
+        else{
+            text_field.setText("Please select a quantity!");
         }
     }
 }
