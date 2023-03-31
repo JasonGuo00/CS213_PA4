@@ -10,6 +10,11 @@ import java.io.IOException;
 
 public class CafeApplication extends Application {
     private static Stage main_stage;
+
+    /**
+     * Initializes stage and default view
+     * @param stage to initialize
+     */
     @Override
     public void start(Stage stage) throws IOException {
         main_stage = stage;
@@ -21,6 +26,10 @@ public class CafeApplication extends Application {
         stage.show();
     }
 
+    /**
+     * Changes the scene to that of a given file
+     * @param file to load from
+     */
     public static void changeScene(String file) throws IOException {
         FXMLLoader loader = new FXMLLoader(CafeApplication.class.getResource(file));
         Scene scene = new Scene(loader.load());
@@ -28,6 +37,9 @@ public class CafeApplication extends Application {
         main_stage.show();
     }
 
+    /**
+     * Main function to start program off from
+     */
     public static void main(String[] args) throws IOException {
         launch();
     }

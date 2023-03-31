@@ -18,18 +18,26 @@ public class StoreViewController {
 
     ArrayList<Order> shop_list;
 
+    /**
+     * Changes scene to the home view
+     */
     @FXML
     void changeSceneHome() throws IOException {
         CafeApplication.changeScene("cafeapp-view.fxml");
     }
 
-
+    /**
+     * Initializes store view
+     */
     @FXML
     private void initialize() {
         shop_list = ShoplistViewController.getOrderList();
         order_list.getItems().addAll(shop_list);
     }
 
+    /**
+     * Removes selected value from the list of orders
+     */
     @FXML
     private void removeItem() {
         if (order_list.getSelectionModel().getSelectedItem() != null) {
@@ -38,6 +46,9 @@ public class StoreViewController {
         }
     }
 
+    /**
+     * Exports orders to a .txt file, named with UNIX timestamp
+     */
     @FXML
     private void exportOrders() {
         try {

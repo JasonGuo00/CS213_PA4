@@ -27,10 +27,17 @@ public class OrderViewController {
 
     private Order order;
 
+    /**
+     * Changes scene to the home view
+     */
     @FXML
     void changeSceneHome() throws IOException {
         CafeApplication.changeScene("cafeapp-view.fxml");
     }
+
+    /**
+     * Initializes order view
+     */
     @FXML
     private void initialize(){
         order_label.setText("Order #" + Order.getPosition());
@@ -38,6 +45,9 @@ public class OrderViewController {
         changeTotals();
     }
 
+    /**
+     * Removes selected value from the list of items ordered
+     */
     @FXML
     private void removeItem() {
         if(order_list.getSelectionModel().getSelectedItem() != null) {
@@ -47,6 +57,9 @@ public class OrderViewController {
         }
     }
 
+    /**
+     * Finalizes order and adds it to list of orders, then returns to home view
+     */
     @FXML
     private void finalizeOrder() throws IOException {
         if(!order_list.getItems().isEmpty()) {
@@ -62,6 +75,9 @@ public class OrderViewController {
         }
     }
 
+    /**
+     * Displays subtotal, tax, and total price of current order at the bottom
+     */
     private void changeTotals() {
         String new_text = String.format("""
                 $%,.2f

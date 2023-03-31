@@ -105,23 +105,32 @@ public class Order {
     }
 
     /**
-     * Writes all the data form the globalOrderList to the instance's finalOrderList.
+     * Writes all the data from the globalOrderList to the instance's finalOrderList.
      * The globalOrderList is cleared afterwards.
      */
     public void finalizeOrder() {
         finalOrderList.addAll(globalOrderList);
         globalOrderList.clear();
     }
+
+    /**
+     * Gets the global list of items in the current order
+     * @return list of order items
+     */
     public static ArrayList<MenuItem> getGlobal() {
         return new ArrayList<>(globalOrderList);
     }
 
-
-
+    /**
+     * Creates and returns string describing the entire order
+     * @return order string
+     */
     @Override
     public String toString() {
         StringBuilder ret = new StringBuilder();
         double total = 0;
+
+        ret.append("Order #").append(orderNum).append("\n");
 
         for (MenuItem menuItem : finalOrderList) {
             ret.append(menuItem);

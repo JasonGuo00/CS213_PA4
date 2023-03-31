@@ -10,5 +10,10 @@ public abstract class MenuItem {
      * @return Price of the menu item.
      */
     public abstract double itemPrice();
+
+    /**
+     * Abstract method for obtaining the quantity requested of the menu item.
+     * @return Quantity of the menu item.
+     */
     public abstract int getQuantity();
 }

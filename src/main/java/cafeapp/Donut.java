@@ -108,6 +108,11 @@ public class Donut extends MenuItem {
         }
         return false;
     }
+
+    /**
+     * Overriding toString method.
+     * @return Donut along with its flavor
+     */
     @Override
     public String toString() {
         return donutType + " [" + donutFlavor + "] x" +donutQuantity;

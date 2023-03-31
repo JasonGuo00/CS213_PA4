@@ -42,11 +42,17 @@ public class CoffeeViewController {
 
     private Coffee coffee = new Coffee("Short");
 
+    /**
+     * Changes scene to the home view
+     */
     @FXML
     void changeSceneHome() throws IOException {
         CafeApplication.changeScene("cafeapp-view.fxml");
     }
 
+    /**
+     * Changes size of coffee selected
+     */
     @FXML
     private void changeSize() {
         if(small.isSelected()) {
@@ -64,6 +70,9 @@ public class CoffeeViewController {
         updatePrice();
     }
 
+    /**
+     * Updates what price is shown
+     */
     @FXML
     private void updatePrice() {
         if(coffee.getQuantity() == 0) {
@@ -74,6 +83,10 @@ public class CoffeeViewController {
         DecimalFormat f = new DecimalFormat("##.00");
         total.setText("$" + f.format(price));
     }
+
+    /**
+     * Initializes donut view
+     */
     @FXML
     private void choiceSweetCream() {
         if(sweet_cream.isSelected()) {
@@ -84,6 +97,10 @@ public class CoffeeViewController {
         }
         updatePrice();
     }
+
+    /**
+     * Adds french vanilla topping and updates price
+     */
     @FXML
     private void choiceFrenchVanilla() {
         if(french_vanilla.isSelected()) {
@@ -94,6 +111,10 @@ public class CoffeeViewController {
         }
         updatePrice();
     }
+
+    /**
+     * Adds Irish cream topping and updates price
+     */
     @FXML
     private void choiceIrishCream() {
         if(irish_cream.isSelected()) {
@@ -104,6 +125,10 @@ public class CoffeeViewController {
         }
         updatePrice();
     }
+
+    /**
+     * Adds caramel topping and updates price
+     */
     @FXML
     private void choiceCaramel() {
         if(caramel.isSelected()) {
@@ -114,6 +139,10 @@ public class CoffeeViewController {
         }
         updatePrice();
     }
+
+    /**
+     * Adds mocha topping and updates price
+     */
     @FXML
     private void choiceMocha() {
         if(mocha.isSelected()) {
@@ -129,10 +158,18 @@ public class CoffeeViewController {
         coffee.setQuantity(Integer.parseInt(quantity.getValue()));
         updatePrice();
     }
+
+    /**
+     * Initializes donut view
+     */
     @FXML
     private void initialize() {
         quantity.getItems().addAll("1", "2", "3", "4", "5");
     }
+
+    /**
+     * Adds selected drinks to current order
+     */
     @FXML
     private void addToOrder() throws IOException {
         if(coffee.getQuantity() > 0) {

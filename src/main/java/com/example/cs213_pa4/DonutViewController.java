@@ -41,11 +41,17 @@ public class DonutViewController {
 
     private ArrayList<Donut> chosen_donuts = new ArrayList<>();
 
+    /**
+     * Changes scene to the home view
+     */
     @FXML
     void changeSceneHome() throws IOException {
         CafeApplication.changeScene("cafeapp-view.fxml");
     }
 
+    /**
+     * Initializes donut view
+     */
     @FXML
     void initialize() {
         donut_types.getItems().addAll(Constants.DONUT_YEAST, Constants.DONUT_CAKE, Constants.DONUT_HOLE);
@@ -53,6 +59,9 @@ public class DonutViewController {
         quantity.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
     }
 
+    /**
+     * Changes whether the user has selected a yeast donut, cake donut, or donut hole
+     */
     @FXML
     protected void changeCommand() {
         switch(donut_types.getValue()) {
@@ -62,6 +71,9 @@ public class DonutViewController {
         }
     }
 
+    /**
+     * Sets flavors and images for a yeast donut
+     */
     @FXML
     private void chooseYeast() {
         donut_flavors.getItems().clear();
@@ -71,6 +83,10 @@ public class DonutViewController {
                 ("/images/yeastdonut.png")));
         donut_img.setImage(yeast_donut);
     }
+
+    /**
+     * Sets flavors and images for a cake donut
+     */
     @FXML
     private void chooseCake() {
         donut_flavors.getItems().clear();
@@ -80,6 +96,10 @@ public class DonutViewController {
                 ("/images/donutcake.png")));
         donut_img.setImage(donut_cake);
     }
+
+    /**
+     * Sets flavors and images for a donut hole
+     */
     @FXML
     private void chooseHole() {
         donut_flavors.getItems().clear();
@@ -90,6 +110,9 @@ public class DonutViewController {
         donut_img.setImage(donut_hole);
     }
 
+    /**
+     * Updates what types of donuts are currently suggested
+     */
     @FXML
     private void updateSelectedDonuts() {
         selected_donuts.getItems().clear();
@@ -98,6 +121,9 @@ public class DonutViewController {
         }
     }
 
+    /**
+     * Updates what price is shown
+     */
     @FXML
     private void updatePrice() {
         double price = 0;
@@ -112,6 +138,9 @@ public class DonutViewController {
         total.setText("Total: $" + f.format(price));
     }
 
+    /**
+     * Adds donut to the current list of chosen donuts, updates price, and outputs a message if user input is wrong
+     */
     @FXML
     private void addDonut() {
         if(donut_types.getValue() != null && donut_flavors.getSelectionModel().getSelectedItem() != null && quantity.getValue() != null) {
@@ -139,6 +168,9 @@ public class DonutViewController {
         }
     }
 
+    /**
+     * Removes donuts from selected and updates price
+     */
     @FXML
     private void removeDonut() {
         if(!chosen_donuts.isEmpty() && selected_donuts.getSelectionModel().getSelectedItem() != null) {
@@ -151,6 +183,10 @@ public class DonutViewController {
             text_field.setText("No donut selected for removal!");
         }
     }
+
+    /**
+     * Adds selected donuts to current order
+     */
     @FXML
     private void addToOrder() throws IOException {
         if(!chosen_donuts.isEmpty()) {

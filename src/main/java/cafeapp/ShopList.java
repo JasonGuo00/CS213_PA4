@@ -35,6 +35,10 @@ public class ShopList {
         orderList.remove(order);
     }
 
+    /**
+     * Returns the list of all orders made.
+     * @return list of orders
+     */
     public ArrayList<Order> getOrderList() {
         return orderList;
     }
